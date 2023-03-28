@@ -1,0 +1,83 @@
+clc;
+clear all();
+close all;
+n=input('Enter number of data :');
+fprintf('Enter value of x :\n');
+for i=1:1:n
+    x(i)=input('Enter data :');
+end
+fprintf('Enter value of y :\n');
+for i=1:1:n
+    y(i)=input('Enter data :');
+end
+subplot(2,2,1)
+plot(x,y);
+sx=0;
+sy=0;
+xy=0;
+x2=0;
+for i=1:1:n
+    sx=sx+x(i);
+    sy=sy+y(i);
+    xy=xy+(x(i)*y(i));
+    x2=x2+(x(i)*x(i));
+end
+a0=(((xy*sx)-(sy*x2))/((n*x2)-(sx*sx)));
+a1=((sy-n*a0)/sx);
+for i=1:1:n
+    y(i)=(a0+(a1*x(i)));
+end
+for i=1:1:n
+    fprintf('%f\n',y(i));
+end
+
+subplot(2,2,2)
+plot(x,y)
+
+
+
+
+
+clc;
+clear all();
+close all;
+n=input('Enter number of data :');
+fprintf('Enter value of x :\n');
+for i=1:1:n
+    x(i)=input('Enter data :');
+end
+fprintf('Enter value of y :\n');
+for i=1:1:n
+    y(i)=input('Enter data :');
+end
+subplot(2,2,1)
+plot(x,y);
+sx=0;
+sy=0;
+x2=0;
+x2y=0;
+x3=0;
+x4=0;
+xy=0;
+for i=1:1:n
+    sx=sx+x(i);
+    sy=sy+y(i);
+    x2=x2+(x(i)*x(i));
+    x2y=x2y+(x2*y(i));
+    xy=xy+(x(i)*y(i));
+    x3=x3+(x(i)*x(i)*x(i));
+     x4=x4+(x(i)*x(i)*x(i)*x(i));
+end
+a1=n,a2=sx,a3=x2,a4=sx,a5=x2,a6=x3,a7=x2,a8=x3,a9=x4;
+d=(a1*(a5*a9-a6*a8))+(a2*(a6*a7-a4*a9))+(a3*(a4*a8-a5*a7));
+dx=(sy*(a5*a9-a6*a8))+(a2*(a6*x2y-xy*a9))+(a3*(xy*a8-a5*x2y));
+c0=dx/d;
+dy=(a1*(xy*a9-a6*x2y))+(sy*(a6*a7-a4*a9))+(a3*(a4*x2y-xy*a7));
+c1=dy/d;
+dz=(a1*(a5*x2y-xy*a8))+(a2*(xy*a7-a4*x2y))+(sy*(a4*a8-a5*a7));
+c2=dz/d;
+for i=1:1:n
+    y(i)=c0+c1*x(i)+c2*(x(i)*x(i));
+end
+subplot(2,2,2)
+plot(x,y)
